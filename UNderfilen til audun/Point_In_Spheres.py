@@ -13,7 +13,7 @@ def Point_In_Spheres(spheres,points):
                 z_point.append(points[j,2])
                 points[j,:] = [0,0,0]
 
-    return np.array(x_point,y_point,z_point),point_in
+    return x_point,y_point,z_point,point_in
 
 
 

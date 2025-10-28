@@ -1,5 +1,5 @@
 import numpy as np
-def rand_tall_med_r(amont, low=0.0, high=1.0, r_size = 100):
+def rand_tall_med_r(amont, low=0, high=10000, r_size = 5):
     """
     Generate two arrays of random points within a specified range.
 
