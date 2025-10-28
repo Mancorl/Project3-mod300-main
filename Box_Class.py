@@ -32,6 +32,10 @@ class box:
         x_points_array=[]
         y_points_array=[]
         z_points_array=[]
+        #x_mod = [[]]
+        #y_mod = [[]]
+        #z_mod = [[]]
+        sphere = [[]]
         for i in range(len(self.spheres)):
             radius_array.append(self.spheres[i][0])
             x_array.append(self.spheres[i][1])
@@ -49,9 +53,16 @@ class box:
         ax.set_xlim(0,self.x)
         ax.set_ylim(0,self.y)
         ax.set_zlim(0,self.z)
-        
-        
-        ax.scatter(x_array,y_array,z_array, s=radius_array)
+
+        u = np.linspace(0, 2 * np.pi, 100)
+        v = np.linspace(0, np.pi, 100)
+        u,v = np.meshgrid(u,v)
+        for i in range(len(self.spheres)):
+            print(x_array)
+            sphere[0].append(x_array[i] + radius_array[i] * np.cos(u)*np.sin(v))
+            sphere[1].append(y_array[i] + radius_array[i] * np.sin(u) * np.sin(v))
+            sphere[2].(z_array[i] + radius_array[i] * np.cos(v))
+        ax.plot(sphere)
         ax.scatter(x_points_array,y_points_array,z_points_array)
         plt.show()
 #test = box()

@@ -11,5 +11,5 @@ def in_circle(point, sphere):
           true if in the sphere
       """
     #print(point)
-    #print(sphere)
-    return math.sqrt((sphere[1]-point[0]) ** 2 + (sphere[2]-point[1]) ** 2 + (sphere[3]-point[2]) ** 2) < sphere[0]
+    #print(sphere[0])
+    return (sphere[1]-point[0]) ** 2 + (sphere[2]-point[1]) ** 2 + (sphere[3]-point[2]) ** 2 < sphere[0]**2
