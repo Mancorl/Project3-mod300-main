@@ -20,7 +20,7 @@ def rand_tall_med_r_2(amont, low=0.0, high=1.0,maks_r=100):
         x.append(np.round(np.random.uniform(low+i, high-i)))
         y.append(np.round(np.random.uniform(low+i, high-i)))
         z.append(np.round(np.random.uniform(low+i, high-i)))
-    return np.array([x,y,z,r]).T
+    return np.array([r,x,y,z]).T
 
 
 
