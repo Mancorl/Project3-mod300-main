@@ -25,11 +25,11 @@ def rand_tall_med_r_2(amont, low=0.0, high=1.0,maks_r=100):
 
 
 
-#box = 10000
-#x = rand_tall_med_r(1, 0, box, 1)
+box = 10000
+x = rand_tall_med_r_2(1, 0, box, 1)
 #print(x)
 #print(x.T)
 
-#boks1 = boks.box()
-#boks1.add_spheres(x)
-#boks1.plot()
+boks1 = boks.box()
+boks1.add_spheres(x)
+boks1.plot()
