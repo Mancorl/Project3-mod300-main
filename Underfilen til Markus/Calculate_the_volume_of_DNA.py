@@ -1,30 +1,17 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from Size_of_atom import Get_dim_and_size_of_atom
+import matplotlib.pyplot as plt
+from Calculate_sphere import Calculate_sphere
 from Random_walker import random_walker
 import Point_In_Spheres
 import math
+from Task_9 import task_9
 
-H, C, N, O, P, dna_list = Get_dim_and_size_of_atom()
-
-
-spheres = []
-for arr in (H, C, N, O, P):
-    if arr is None or len(arr) == 0:
-        continue
-    for i in range(len(arr)):
-        r = float(arr[i][0])
-        x = float(arr[i][1])
-        y = float(arr[i][2])
-        z = float(arr[i][3])
-        spheres.append([r, x, y, z])
-
-spheres = np.array(spheres, dtype=float)
-
-def main():
+def Calculate_the_volume_of_DNA(walks,steps):
     ax = plt.figure().add_subplot(projection="3d")
-    walks = 200
-    steps = 100
+
+    spheres = Calculate_sphere()
+    
     points = []
 
     for walk_index in range(walks):
@@ -62,7 +49,9 @@ def main():
     ax.set_ylabel("Y (nm)")
     ax.set_zlabel("Z (nm)")
     
-    ax.plot(x, y, z,color="#F83030")
+    ax.scatter(x, y, z,".",s=1,color="#F83030")
+    # H,O,P,C,N,_ = Get_dim_and_size_of_atom()
+    # task_9(H,O,P,C,N)
     plt.show()
     
     ######TODO MAKE 95 KONFIDENS INTERVAL#########
@@ -91,6 +80,13 @@ def main():
     V_high_um3 = V_high / 1e9
     print(f"DNA volume ≈ {V_nm3:.3f} nm^3 ({V_um3:.3e} µm^3)")
     print(f"95% CI in µm^3: [{V_low_um3:.3e}, {V_high_um3:.3e}]")
+
+
+def main():
+    walks = 500
+    steps = 1000
+    Calculate_the_volume_of_DNA(walks,steps)
+
 
 if __name__ == "__main__":
     main()
