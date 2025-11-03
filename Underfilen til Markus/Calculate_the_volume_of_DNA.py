@@ -9,9 +9,7 @@ from Task_9 import task_9
 
 def Calculate_the_volume_of_DNA(walks,steps):
     ax = plt.figure().add_subplot(projection="3d")
-
     spheres = Calculate_sphere()
-    
     points = []
 
     for walk_index in range(walks):
@@ -50,8 +48,6 @@ def Calculate_the_volume_of_DNA(walks,steps):
     ax.set_zlabel("Z (nm)")
     
     ax.scatter(x, y, z,".",s=1,color="#F83030")
-    # H,O,P,C,N,_ = Get_dim_and_size_of_atom()
-    # task_9(H,O,P,C,N)
     plt.show()
     
     ######TODO MAKE 95 KONFIDENS INTERVAL#########
