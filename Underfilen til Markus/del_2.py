@@ -33,15 +33,15 @@ ax=plt.figure().add_subplot(projection="3d")
 
 def plotting_3d(n,N):
     amount=0
-    for i in range(n):
+    for walk in range(n):
         distribute = re_make_point(make_points(1,1,10000),xyz_high,xyz_low)
-
+        print_plot_list.append([])
         
         x=distribute[0][0]
         y=distribute[0][1]
         z=distribute[0][2]
 
-        for i in range(N):
+        for step in range(N):
             x=np.append(x,np.random.randint(-1,2))
             y=np.append(y,np.random.randint(-1,2))
             z=np.append(z,np.random.randint(-1,2))
@@ -68,9 +68,16 @@ def plotting_3d(n,N):
                 
                 break
             
-        plot_list.append(np.cumsum(x))
-        plot_list.append(np.cumsum(y))
-        plot_list.append(np.cumsum(z))
+        all_plot_list.append(np.cumsum(x))
+        all_plot_list.append(np.cumsum(y))
+        all_plot_list.append(np.cumsum(z))
+
+        print_plot_list[walk].append(np.cumsum(x))
+        print_plot_list[walk].append(np.cumsum(y))
+        print_plot_list[walk].append(np.cumsum(z))
+
+
+
         
         
 
@@ -80,7 +87,13 @@ def plotting_3d(n,N):
 ax.set_xlim([-50, -30])
 ax.set_ylim([-20, 5]) 
 ax.set_zlim([-10, 10])
-plot_list=[]
+
+
+all_plot_list=[]
+print_plot_list=[]
+
+
+
 user_input_1="start"
 user_input_2="start"
 while user_input_1 and user_input_2 != 0:
@@ -89,7 +102,7 @@ while user_input_1 and user_input_2 != 0:
 
     plotting_3d(user_input_1,user_input_2)
     for i in range(user_input_1):
-        ax.plot(plot_list[i])
+        ax.plot(*print_plot_list[i])
         plt.pause(0.05)
 
     
