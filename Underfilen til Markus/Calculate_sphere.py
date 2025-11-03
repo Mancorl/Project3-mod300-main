@@ -2,15 +2,19 @@ from Size_of_atom import Get_dim_and_size_of_atom
 import numpy as np
 
 def Calculate_sphere():
-    spheres = []
+    """
+    Makes a list of all atoms (as spheres) with their radius and position.
+    Each atom is saved as [radius, x, y, z].
+    """
     H, C, N, O, P, dna_list = Get_dim_and_size_of_atom()
-    for arr in (H, C, N, O, P):
-        if arr is None or len(arr) == 0:
+
+    spheres = []
+
+    for atom_list in [H, C, N, O, P]:
+        if atom_list is None or len(atom_list) == 0:
             continue
-        for i in range(len(arr)):
-            r = float(arr[i][0])
-            x = float(arr[i][1])
-            y = float(arr[i][2])
-            z = float(arr[i][3])
-            spheres.append([r, x, y, z])
-        return np.array(spheres, dtype=float)
+        for atom in atom_list:
+            r, x, y, z = atom
+            spheres.append([float(r), float(x), float(y), float(z)])
+
+    return np.array(spheres, dtype=float)

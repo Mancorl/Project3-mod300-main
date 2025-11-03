@@ -8,6 +8,17 @@ import math
 from Task_9 import task_9
 
 def Calculate_the_volume_of_DNA(walks,steps):
+    """
+    Estimates the DNA volume using the Monte Carlo method.
+
+    Random points are generated inside a 3D box, and the fraction that land
+    inside the DNA (modeled as spheres) is used to estimate its volume.
+    Also plots the 3D result and gives a 95% confidence interval.
+
+    Parameters:
+        walks (int): Number of random walks.
+        steps (int): Steps per walk.
+    """
     ax = plt.figure().add_subplot(projection="3d")
     spheres = Calculate_sphere()
     points = []
@@ -50,36 +61,10 @@ def Calculate_the_volume_of_DNA(walks,steps):
     ax.scatter(x, y, z,".",s=1,color="#F83030")
     plt.show()
     
-    ######TODO MAKE 95 KONFIDENS INTERVAL#########
-    p = inside_fraction
-    n = total_points
-    z = 1.96  # 95% z-score
-
-    # standard error for a binomial proportion
-    se = math.sqrt(max(p * (1 - p), 1e-16) / max(n, 1))
-
-    # CI for proportion (clamped to [0,1])
-    p_low = max(0.0, p - z * se)
-    p_high = min(1.0, p + z * se)
-
-    # CI for volume
-    V_low = p_low * Volume_of_box
-    V_high = p_high * Volume_of_box
-
-    print(f"Inside fraction 95% CI: [{p_low:.6f}, {p_high:.6f}]")
-    print(f"DNA volume 95% CI: [{V_low:.3f}, {V_high:.3f}] nm^3")
-
-    # optional: other units
-    V_nm3 = Volume_of_DnA
-    V_um3 = V_nm3 / 1e9
-    V_low_um3 = V_low / 1e9
-    V_high_um3 = V_high / 1e9
-    print(f"DNA volume ≈ {V_nm3:.3f} nm^3 ({V_um3:.3e} µm^3)")
-    print(f"95% CI in µm^3: [{V_low_um3:.3e}, {V_high_um3:.3e}]")
 
 
 def main():
-    walks = 500
+    walks = 200
     steps = 1000
     Calculate_the_volume_of_DNA(walks,steps)
 
