@@ -22,11 +22,11 @@ def Get_dim_and_size_of_atom():
     return_list_C = []
     return_list_N = []
     atom_radius = {
-        "H": "1.2",   
+        "H": "1.2",
+        "O": "1.52",
+        "P": "1.8",
         "C": "1.7",
         "N": "1.55",
-        "O": "1.52",
-        "P": "1.8"
     }
 
     try:

@@ -59,12 +59,13 @@ def Calculate_the_volume_of_DNA(walks,steps):
     ax.set_zlabel("Z (nm)")
     
     ax.scatter(x, y, z,".",s=1,color="#F83030")
+
     plt.show()
     
 
 
 def main():
-    walks = 200
+    walks = 300
     steps = 1000
     Calculate_the_volume_of_DNA(walks,steps)
 

@@ -29,7 +29,7 @@ def random_walker(N):
         y=np.append(y,np.random.randint(-1,2))
         z=np.append(z,np.random.randint(-1,2))
 
-
+        
         if sum(x) > xyz_high[0] or sum(y) > xyz_high[1] or sum(z) > xyz_high[2]:
             # if __name__ == "__main__":
             #     print("---------------------")
