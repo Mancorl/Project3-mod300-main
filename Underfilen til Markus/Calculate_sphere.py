@@ -17,4 +17,4 @@ def Calculate_sphere():
     return np.array(spheres, dtype=float)
 
 if __name__ == "__main__":
-    Calculate_sphere()
+    print(Calculate_sphere())

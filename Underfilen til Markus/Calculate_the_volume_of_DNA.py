@@ -5,7 +5,7 @@ from Calculate_sphere import Calculate_sphere
 from Random_walker import random_walker
 import Point_In_Spheres
 import math
-from Task_9 import task_9
+
 
 def Calculate_the_volume_of_DNA(walks,steps):
     """
@@ -54,18 +54,17 @@ def Calculate_the_volume_of_DNA(walks,steps):
     ax.set_ylim([-20, 5])
     ax.set_zlim([-10, 10])
 
-    ax.set_xlabel("X (nm)")
-    ax.set_ylabel("Y (nm)")
-    ax.set_zlabel("Z (nm)")
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
     
     ax.scatter(x, y, z,".",s=1,color="#F83030")
 
     plt.show()
     
-
-
+    
 def main():
-    walks = 300
+    walks = 100
     steps = 1000
     Calculate_the_volume_of_DNA(walks,steps)
 

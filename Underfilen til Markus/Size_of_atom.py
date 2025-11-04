@@ -1,84 +1,69 @@
 import numpy as np
+
 def Get_dim_and_size_of_atom():
     """
     Reads 'dna_coords.txt' and replaces atom symbols with their atomic radius.
-
-    Each line in the file should be formatted as:
-        <AtomType> <x> <y> <z>
-
-    Returns
-    -------
-    list of list of str
-        Each inner list contains [radius, x, y, z] as strings.
-
-    Raises
-    ------
-    FileNotFoundError
-        If 'dna_coords.txt' is missing.
+    Returns:
+        H, O, P, C, N, dna_list
     """
-    return_list_H = []
-    return_list_O = []
-    return_list_P = []
-    return_list_C = []
-    return_list_N = []
+
     atom_radius = {
-        "H": "1.2",
-        "O": "1.52",
-        "P": "1.8",
-        "C": "1.7",
-        "N": "1.55",
+        "H": 1.2,
+        "O": 1.52,
+        "P": 1.8,
+        "C": 1.7,
+        "N": 1.55,
     }
+
+    atoms = {
+    "H": [],
+    "O": [],
+    "P": [],
+    "C": [],
+    "N": []
+    }
+
 
     try:
         with open("dna_coords.txt") as txt:
             for line in txt:
-                new_line = line.strip()
-                #print(new_list)
+                parts = line.strip().split()
 
-                if new_line[0] == "H":
-                    for i in new_line:
-                        if i in atom_radius:
-                            new_line = new_line.replace(i, atom_radius[i])
-                    new_list = new_line.split()
-                    new_list = [float(item) for item in new_list]
-                    return_list_H.append(new_list)
+                assert len(parts) == 4, "Line in dna_coords.txt does not have 4 values"
 
-                if new_line[0] == "O":
-                    for i in new_line:
-                        if i in atom_radius:
-                            new_line = new_line.replace(i, atom_radius[i])
-                    new_list = new_line.split()
-                    new_list = [float(item) for item in new_list]
-                    return_list_O.append(new_list)
+                atom = parts[0]
 
-                if new_line[0] == "P":
-                    for i in new_line:
-                        if i in atom_radius:
-                            new_line = new_line.replace(i, atom_radius[i])
-                    new_list = new_line.split()
-                    new_list = [float(item) for item in new_list]
-                    return_list_P.append(new_list)
+                assert atom in atom_radius, "Unknown atom type found"
 
-                if new_line[0] == "C":
-                    for i in new_line:
-                        if i in atom_radius:
-                            new_line = new_line.replace(i, atom_radius[i])
-                    new_list = new_line.split()
-                    new_list = [float(item) for item in new_list]
-                    return_list_C.append(new_list)
+                x = float(parts[1])
+                y = float(parts[2])
+                z = float(parts[3])
+                r = atom_radius[atom]
 
-                if new_line[0] == "N":
-                    for i in new_line:
-                        if i in atom_radius:
-                            new_line = new_line.replace(i, atom_radius[i])
-                    new_list = new_line.split()
-                    new_list = [float(item) for item in new_list]
-                    return_list_N.append(new_list)
+                atoms[atom].append([r, x, y, z])
 
     except FileNotFoundError:
-        print("Error: The file was not found.")
+        print("Error: 'dna_coords.txt' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
-    dna_list = return_list_H + return_list_O + return_list_P + return_list_C + return_list_N
-    return np.array(return_list_H),np.array(return_list_O),np.array(return_list_P),np.array(return_list_C),np.array(return_list_N), np.array(dna_list)
 
+    
+    H = np.array(atoms["H"])
+    O = np.array(atoms["O"])
+    P = np.array(atoms["P"])
+    C = np.array(atoms["C"])
+    N = np.array(atoms["N"])
+
+    
+    dna_list = []
+    for i in [H, O, P, C, N]:
+        if len(i) > 0:
+            for atom in i:
+                dna_list.append(atom)
+
+    dna_list = np.array(dna_list)
+
+    return H, O, P, C, N, dna_list
+
+if __name__ == "__main__":
+    Get_dim_and_size_of_atom()
