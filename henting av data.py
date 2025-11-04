@@ -1,3 +1,5 @@
+import numpy as np
+
 def Get_dim_and_size_of_atom():
     """
     Reads 'dna_coords.txt' and replaces atom symbols with their atomic radius.
@@ -7,42 +9,43 @@ def Get_dim_and_size_of_atom():
 
     Returns
     -------
-    list of list of str
-        Each inner list contains [radius, x, y, z] as strings.
-
-    Raises
-    ------
-    FileNotFoundError
-        If 'dna_coords.txt' is missing.
+    np.ndarray
+        Each row contains [radius, x, y, z] as floats.
     """
-    return_list = []
     atom_radius = {
-        "H": "1.2",
-        "O": "1.52",
-        "P": "1.8",
-        "C": "1.7",
-        "N": "1.55",
+        "H": 1.2,
+        "O": 1.52,
+        "P": 1.8,
+        "C": 1.7,
+        "N": 1.55,
     }
 
+    return_list = []
+
     try:
-        with open("dna_coords.txt") as txt:
+        with open("dna_coords.txt", "r") as txt:
             for line in txt:
-                new_line = line.strip()
-                for i in new_line:
-                    if i in atom_radius:
-                        new_line = new_line.replace(i, atom_radius[i])
-                new_list = new_line.split()
-                print(new_list)
-                return_list.append(new_list)
+                parts = line.strip().split()
+                if len(parts) != 4:
+                    print(f"Skipping malformed line: {line.strip()}")
+                    continue
+
+                atom, x, y, z = parts
+                if atom not in atom_radius:
+                    print(f"Unknown atom type: {atom}")
+                    continue
+
+                radius = atom_radius[atom]
+                return_list.append([radius, float(x), float(y), float(z)])
+
+        return np.array(return_list)
 
     except FileNotFoundError:
-        print("Error: The file was not found.")
+        raise FileNotFoundError("Error: The file 'dna_coords.txt' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-    return return_list
-
-
-Get_dim_and_size_of_atom()
+        return np.array([])
 
 
+if __name__ == "__main__":
+    print(Get_dim_and_size_of_atom())
