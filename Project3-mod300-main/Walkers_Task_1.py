@@ -103,4 +103,4 @@ def main(user_input_1,user_input_2):
         ax.plot(*print_plot_list[i])
         plt.pause(0.05)
 
-main(30,30)
+#main(30,30)

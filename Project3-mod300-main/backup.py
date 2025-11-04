@@ -33,7 +33,6 @@ ax=plt.figure().add_subplot(projection="3d")
 
 def random_walker(N):
     distribute = re_make_point(make_points(1,1,10000),xyz_high,xyz_low)
-        
     x=distribute[0][0]
     y=distribute[0][1]
     z=distribute[0][2]
@@ -51,7 +50,7 @@ def random_walker(N):
             #     print(sum(y) > xyz_high[1],sum(y),'y >',xyz_high[1])
             #     print(sum(z) > xyz_high[2],sum(z),'z >',xyz_high[2])
             #     print("---------------------")
-            
+        
 
             x = x[:-1]
             y = y[:-1]
@@ -66,7 +65,7 @@ def random_walker(N):
             #     # print(sum(y) < xyz_low[1],sum(y),'y <',xyz_low[1])
             #     # print(sum(z) < xyz_low[2],sum(z),'z <',xyz_low[2])
             #     # print("---------------------")
-            
+        
             x = x[:-1]
             y = y[:-1]
             z = z[:-1]

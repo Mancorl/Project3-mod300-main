@@ -29,3 +29,5 @@ def task_9(H,O,P,C,N):
     ax.plot(x_n, y_n, z_n, '.', color='#3050F8')  # Nitrogen - blue
 
 
+#H,O,P,C,N,_ = Size_of_atom.Get_dim_and_size_of_atom()
+#task_9(H,O,P,C,N)

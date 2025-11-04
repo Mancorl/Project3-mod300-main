@@ -64,11 +64,7 @@ def Calculate_the_volume_of_DNA(walks,steps):
     
 
 
-def main():
-    walks = 300
-    steps = 1000
+def main(walks = 300, steps=1000):
     Calculate_the_volume_of_DNA(walks,steps)
 
 
-if __name__ == "__main__":
-    main()
